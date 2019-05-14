@@ -193,7 +193,7 @@ class IndexController extends Controller{
 							}else{
 								$uid = isset($_SESSION['authen']['uid']) ? $_SESSION['authen']['uid'] : '';
 								$values .= '(\''.$str['data']['pics']['pic_1']['pid'].'\',\''.$uid.'\',\''.time().'\',\''.getIp().'\'),';
-								$res['code'] = '0000';
+								$res['code'] = '200';
 								$res['url'] .=  $upload->getImageUrl($str['data']['pics']['pic_1']['pid']) . '
 ';
 							}

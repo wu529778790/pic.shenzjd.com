@@ -58,7 +58,7 @@ class ConfigureController extends Controller{
 		#===========网站基本配置============
 		'title' => isset($_POST['title']) ? $_POST['title'] : '极简空间', 	//站点标题
 		'siteinfo' => isset($_POST['siteinfo']) ? $_POST['siteinfo'] : '',	//站点副标题
-		'keywords' => isset($_POST['keywords']) ? $_POST['keywords'] : '二次元图片,新浪图床,极简空间',	//站点关键字
+		'keywords' => isset($_POST['keywords']) ? $_POST['keywords'] : '图片,新浪图床,极简空间',	//站点关键字
 		'description' => isset($_POST['description']) ? $_POST['description'] : '',	//站点描述
 		'record' => isset($_POST['record']) ? $_POST['record'] : '',	//备案号
 		'footerinfo' => isset($_POST['footerinfo']) ? $_POST['footerinfo'] : '',	//底部信息

@@ -9,6 +9,7 @@
     <meta name="description" content="<?php echo $description;?>" />
     <meta name="generator" content="极简空间">
     <meta name="referrer" content="same-origin">
+    <meta name="referrer" content="no-referrer">
     <link rel="icon" href="<?php echo PATH_VIEW;?>Home/images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="<?php echo PATH_VIEW;?>Home/style/main.css">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">

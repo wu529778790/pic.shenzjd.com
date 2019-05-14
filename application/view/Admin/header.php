@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="referrer" content="same-origin">
+  <meta name="referrer" content="no-referrer">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title><?php echo $_SESSION['authen']['role'] == 'admin' ? '管理后台' : '用户中心'?> - <?php echo configGet('title');?></title>
   <link rel="icon" href="<?php echo PATH_VIEW;?>Home/images/favicon.ico">

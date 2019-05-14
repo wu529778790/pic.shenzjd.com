@@ -93,7 +93,7 @@ function msg(id,text,shake=true){
 	},1); 
 }
 $(function(){
-	// 显示表单
+	// 显示登录表单
 	$('#form-btn').hwLayer({
 		width: 480,
 		tapLayer: false
