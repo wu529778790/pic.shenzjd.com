@@ -22,7 +22,32 @@
                 reader.onerror = function () { thumbnail.remove() }; reader.readAsDataURL(file) } else if (file.type.indexOf('image') === -1) { thumbnail = $('<i class="fa fa-file-o uploader__icon">') } thumbnailContainer.append(thumbnail); listItem.append(thumbnailContainer); listItem.append(fileNameWrapper).append(sizeWrapper).append(removeLink); dom.fileList.append(listItem) } function getExtension(path) { var basename = path.split(/[\\/]/).pop(); var pos = basename.lastIndexOf('.'); if (basename === '' || pos < 1) { return '' } return basename.slice(pos + 1) }
             function formatBytes(bytes, decimals) { if (bytes === 0) return '0 Bytes'; var k = 1024; var dm = decimals + 1 || 3; var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']; var i = Math.floor(Math.log(bytes) / Math.log(k)); return (bytes / Math.pow(k, i)).toPrecision(dm) + ' ' + sizes[i] }
             function cleanName(name) { name = name.replace(/\s+/gi, '-'); return name.replace(/[^a-zA-Z0-9.\-]/gi, ''); }
-            function uploadSubmitHandler() { if (state.fileBatch.length !== 0) { var data = new FormData(); for (var i = 0; i < state.fileBatch.length; i++) { data.append('files[]', state.fileBatch[i].file, state.fileBatch[i].fileName) } size = 0; $('#disabled').attr("disabled", true); $('#disabled').text('上传中，请稍等......'); $.ajax({ type: 'POST', url: options.ajaxUrl, data: data, dataType: 'json', cache: false, contentType: false, processData: false, success: function (res) { if (res.code != '200') { console.info(res.code); alert('上传时发生了点小插曲，请打开控制器查看原因！') } $('#text').show(); $('#text').val(res.url); $('#disabled').attr("disabled", false); $('.js-upload-remove-button').click(); $('#disabled').text('上传选择的文件') }, xhr: xhrOnProgress(function (e) { $('#disabled').text('队列上传中. 顷刻间便能完成. (' + (Math.floor(e.loaded / e.total * 100) - 1) + '% 完成)') }) }) } }
+            function uploadSubmitHandler(single) { 
+              if (state.fileBatch.length !== 0) { 
+                var data = new FormData(); 
+                for (var i = 0; i < state.fileBatch.length; i++) { data.append('files[]', state.fileBatch[i].file, state.fileBatch[i].fileName) } 
+                size = 0; $('#disabled').attr("disabled", true); 
+                $('#disabled').text('上传中，请稍等......'); 
+                $.ajax({
+                  type: 'POST',
+                  url: options.ajaxUrl, 
+                  data: data, 
+                  dataType: 'json', 
+                  cache: false, 
+                  contentType: false, 
+                  processData: false, 
+                  success: function (res) {
+                    if (res.code != '200') { console.info(res.code); alert('上传时发生了点小插曲，请打开控制器查看原因！') } 
+                    $('#text').show(); $('#text').val(res.url); 
+                    $('#disabled').attr("disabled", false);
+                    console.log(res.url);
+                    if (single === 'single') {
+                      window.location.href=`https://pic.shenzjd.com/${res.url.substring(29, 61)}`; 
+                    }
+                    $('.js-upload-remove-button').click(); $('#disabled').text('上传选择的文件') }, xhr: xhrOnProgress(function (e) { $('#disabled').text('队列上传中. 顷刻间便能完成. (' + (Math.floor(e.loaded / e.total * 100) - 1) + '% 完成)') }) 
+                }) 
+              } 
+            }
             var xhrOnProgress = function (fun) { 
                 xhrOnProgress.onprogress = fun; 
                 return function () { var xhr = $.ajaxSettings.xhr(); 
@@ -51,7 +76,7 @@
                         }
                         $("#display").show();
                         addItem(blob);
-                        uploadSubmitHandler();
+                        uploadSubmitHandler('single');
                     }
                 }
             });
