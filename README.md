@@ -19,3 +19,11 @@
 
 后台地址：http://您的域名/admin  但是讽刺的是，您需要在前台进行登录
 
+# 针对新浪微博屏蔽的解决方案
+
+在引入页面header内加入
+
+
+    <meta name="referrer" content="same-origin">
+    <meta name="referrer" content="no-referrer">
+
