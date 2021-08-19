@@ -38,6 +38,7 @@ export default {
   }
   .ant-layout-content {
     height: calc(100vh - 64px - 70px);
+    overflow: auto;
   }
 }
 </style>
