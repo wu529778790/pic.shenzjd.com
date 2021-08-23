@@ -20,13 +20,22 @@ export default {
 </script>
 <style lang="scss" scoped>
 .ant-layout {
+  background-image: -moz-linear-gradient(
+    45deg,
+    rgb(255, 168, 252),
+    rgb(194, 252, 255)
+  );
+
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgb(255, 168, 252),
+    rgb(194, 252, 255)
+  );
+
   background-image: linear-gradient(
-    102.7deg,
-    #caf8d0 8.2%,
-    #adfcf4 19.6%,
-    #adcdfc 36.8%,
-    #dfadfc 73.2%,
-    #fddaff 90.9%
+    45deg,
+    rgb(255, 168, 252),
+    rgb(194, 252, 255)
   );
   background-attachment: fixed;
   background-repeat: no-repeat;

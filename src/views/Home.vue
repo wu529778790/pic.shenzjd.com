@@ -18,7 +18,7 @@
         </p>
       </a-upload-dragger>
     </div>
-    {{fileList}}
+    {{ fileList }}
     <a-image-preview-group class="fileList">
       <a-image
         v-for="item in fileList"
@@ -33,6 +33,9 @@
 import { InboxOutlined } from '@ant-design/icons-vue'
 import { message } from 'ant-design-vue'
 import { defineComponent, ref } from 'vue'
+import { getUser } from '@/api/home.js'
+import store from '@/store'
+
 export default defineComponent({
   components: {
     InboxOutlined
@@ -52,7 +55,11 @@ export default defineComponent({
         message.error(`${info.file.name} file upload failed.`)
       }
     }
-
+    if (!store.getters.user.userinfo.name) {
+      getUser().then(res => {
+        store.dispatch('user/change', { key: 'userinfo', value: res.data })
+      })
+    }
     return {
       fileList,
       handleChange
